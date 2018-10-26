@@ -90,6 +90,9 @@ filetype on               " Enable filetype detection
 filetype indent on        " Enable filetype-specific indenting
 filetype plugin on        " Enable filetype-specific plugins
 
+set backupdir=$TMPDIR//
+set directory=$TMPDIR//
+
 " previous to talk
 "set directory=$HOME/.vim/swapfiles//
 "set undodir=~/.vim/undo

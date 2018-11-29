@@ -1,0 +1,63 @@
+unbind C-b          # unbind default leader key
+set -g prefix C-a
+
+#set-option -g default-command "reattach-to-user-namespace -l zsh" # or bash
+#set-option -g default-shell /bin/zsh
+#set-option -g history-limit 10000
+#set-option -g default-terminal "screen-256color"
+#set -g message-fg white
+#set -g message-bg black
+#set -g message-attr bright
+#set -g status-justify centre
+#setw -g monitor-activity on
+#set -g visual-activity on
+#
+#############################################################################
+## utf8 support
+#############################################################################
+##set-window-option -g utf8 on
+#
+#############################################################################
+## The foreground color of a pane is the actual dashed line that makes up the border.
+## The background color, by default, is black, but if we color it in when the pane is active,
+## we can make the active pane extremely noticeable.
+#############################################################################
+#set -g pane-border-fg green
+#set -g pane-border-bg black
+#set -g pane-active-border-fg white
+#set -g pane-active-border-bg yellow
+#
+#############################################################################
+## colors
+#############################################################################
+#setw -g mode-bg black
+#set -g status-fg white
+#set -g status-bg black
+##set -g status-utf8 on
+#
+#############################################################################
+## Automatically set window title
+#############################################################################
+#setw -g automatic-rename
+#
+#############################################################################
+## Titles (window number, program name, active (or not)
+#############################################################################
+#set-option -g set-titles on
+#set-option -g set-titles-string '#H:#S.#I.#P #W #T'
+#
+#
+#############################################################################
+## Bindings
+#############################################################################
+#bind-key r source-file ~/.tmux.conf \; display "tmux config reloaded!"
+#bind | split-window -h
+#bind - split-window -v
+#
+#bind -r H resize-pane -L 5
+#bind -r J resize-pane -D 5
+#bind -r K resize-pane -U 5
+#bind -r L resize-pane -R 5
+#
+#bind C-c run "tmux show-buffer | reattach-to-user-namespace pbcopy"
+#bind C-v run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"

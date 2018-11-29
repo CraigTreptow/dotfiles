@@ -1,6 +1,19 @@
 unbind C-b          # unbind default leader key
 set -g prefix C-a
 
+#############################################################################
+## Key Bindings
+#############################################################################
+bind-key r source-file ~/.tmux.conf \; display "tmux config reloaded!"
+bind | split-window -h
+bind - split-window -v
+
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+
+
 #set-option -g default-command "reattach-to-user-namespace -l zsh" # or bash
 #set-option -g default-shell /bin/zsh
 #set-option -g history-limit 10000
@@ -45,19 +58,6 @@ set -g prefix C-a
 #############################################################################
 #set-option -g set-titles on
 #set-option -g set-titles-string '#H:#S.#I.#P #W #T'
-#
-#
-#############################################################################
-## Bindings
-#############################################################################
-#bind-key r source-file ~/.tmux.conf \; display "tmux config reloaded!"
-#bind | split-window -h
-#bind - split-window -v
-#
-#bind -r H resize-pane -L 5
-#bind -r J resize-pane -D 5
-#bind -r K resize-pane -U 5
-#bind -r L resize-pane -R 5
 #
 #bind C-c run "tmux show-buffer | reattach-to-user-namespace pbcopy"
 #bind C-v run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"

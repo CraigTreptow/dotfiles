@@ -8,25 +8,34 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'tpope/vim-dispatch'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-" ==============================================================================
 "
 " ==============================================================================
 " key mappings
 " ==============================================================================
-" key mappings from upcase vim trail
 let mapleader = "\<Space>"
 
 nmap <leader>vr :sp $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
 " ==============================================================================
-
+" General configurations
+" ==============================================================================
+set undodir=~/.vim/undo
+set undofile
+set expandtab             " Expand all tabs to spaces
+set tabstop=2             " Spaces used when tab key is pressed
+set shiftwidth=2          " Spaces used for indentation
+set nu                    " Turn on line numbers
+set number relativenumber " hybrid numbering.  Relative, plus the single absolution line you're on
+set colorcolumn=81
+set nocompatible " Required by Vundle according to r00k
+set nofoldenable "disable folding
 
 " ==============================================================================
 " 90% talk (https://www.youtube.com/watch?v=XA2WjJbmmoM)
-set nocompatible          " Required by Vundle according to r00k
 " enable syntax and plugins (for netrw)
 syntax enable             " Enable syntax highlighting
 filetype plugin on        " Enable filetype-specific plugins
@@ -100,14 +109,6 @@ let g:netrw_list_hide.=',\(^\|\s\s)\zs\.\S\+'
 
 
 " stuff I had before that I like
-set undodir=~/.vim/undo
-set undofile
-set expandtab             " Expand all tabs to spaces
-set tabstop=2             " Spaces used when tab key is pressed
-set shiftwidth=2          " Spaces used for indentation
-set nu                    " Turn on line numbers
-set number relativenumber " hybrid numbering.  Relative, plus the single absolution line you're on
-set colorcolumn=81
 "" turn off relative numbering in insert mode or when buffer loses focus
 augroup numbertoggle
   autocmd!

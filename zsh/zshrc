@@ -1,0 +1,49 @@
+function source_if_possible()
+{
+  if [[ -r $1 ]]; then
+    source $1
+  fi
+}
+
+# plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git osx brew bundler rails
+  shrink-path
+  zsh-autosuggestions zsh-syntax-highlighting
+)
+
+BASE=~/code/dotfiles/zsh
+for file in "$BASE/$1"/*.zsh; do
+  source "$file"
+done
+
+source_if_possible ~/.secrets
+source_if_possible ~/code/tmuxinator.zsh
+
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" ]] && exec tmux
+
+eval "$(rbenv init -)"
+
+if [[ -d ~/zsh-git-prompt ]]; then
+  source_if_possible ~/zsh-git-prompt/zshrc.sh
+else
+  source_if_possible ~/Source/zsh-git-prompt/zshrc.sh
+fi
+
+PROMPT='%B$(shrink_path -f)$(git_super_status)> '
+GIT_PROMPT_EXECUTABLE="haskell"
+
+# added by travis gem
+[ -f /Users/Ctreptow/.travis/travis.sh ] && source_if_possible /Users/Ctreptow/.travis/travis.sh
+
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd
+bindkey -v
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"

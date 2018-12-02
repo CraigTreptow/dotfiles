@@ -10,18 +10,31 @@ set-window-option -g utf8 on
 ## Key Bindings
 #############################################################################
 bind-key r source-file ~/.tmux.conf \; display "tmux config reloaded!"
+# no prefix key required
 bind-key -n C-h select-pane -L
 bind-key -n C-j select-pane -D
 bind-key -n C-k select-pane -U
 bind-key -n C-l select-pane -R
 
-bind-key | split-window -h
-bind-key - split-window -v
+bind-key | split-window -h -c '#{pane_current_path}'
+bind-key - split-window -v -c '#{pane_current_path}'
 
 bind-key -r H resize-pane -L 5
 bind-key -r J resize-pane -D 5
 bind-key -r K resize-pane -U 5
 bind-key -r L resize-pane -R 5
+
+# Fine adjustment (1 or 2 cursor cells per bump)
+bind-key -n S-Left  resize-pane -L 2
+bind-key -n S-Right resize-pane -R 2
+bind-key -n S-Down  resize-pane -D 1
+bind-key -n S-Up    resize-pane -U 1
+
+# Coarse adjustment (5 or 10 cursor cells per bump)
+bind-key -n C-Left  resize-pane -L 10
+bind-key -n C-Right resize-pane -R 10
+bind-key -n C-Down  resize-pane -D 5
+bind-key -n C-Up    resize-pane -U 5
 
 #############################################################################
 ## Global Options
@@ -29,12 +42,18 @@ bind-key -r L resize-pane -R 5
 set-option -g default-terminal "screen-256color"
 # allows C-a, C-p, etc. to work when entering tmux command with C-:
 set-option -g status-keys "emacs"
+set-option -g default-shell /bin/zsh
 
 #############################################################################
-## colors
+## Window related configurations
 #############################################################################
-set-option -g status-bg black
-set-option -g status-fg grey
+set-window -g automatic-rename                  # automatically set window title
+bind-key c new-window -c "#{pane_current_path}" # new windows start in dir of current pane
+bind-key b break-pane -d                        # "break" a pane into a new window
+set-option -g base-index 1                      # Start window numbering at 1
+set-option -g renumber-windows on               # Renumber windows as they are created and destroyed
+set-option -g set-titles on
+set-option -g set-titles-string '#H:#S.#I.#P #W #T'
 
 #############################################################################
 ## status bar
@@ -42,9 +61,11 @@ set-option -g status-fg grey
 set-option -g status-left-length  50
 set-option -g status-right-length 50
 # without battery utility on OSX
-#set-option -g status-right " #(date '+%a, %b %d - %I:%W') #(pmset -g batt | grep InternalBattery | awk '{print $3}' | sed -E 's/;//g') "
+set-option -g status-right " #(date '+%a, %b %d - %I:%W') #(pmset -g batt | grep InternalBattery | awk '{print $3}' | sed -E 's/;//g') "
 # with github.com/Goles/battery utility on OSX
-set-option -g status-right " #(date '+%a, %b %d - %I:%W') #(battery -t) "
+#set-option -g status-right " #(date '+%a, %b %d - %I:%W') #(battery -t) "
+set-option -g status-bg black
+set-option -g status-fg grey
 
 
 
@@ -53,7 +74,6 @@ set-option -g status-right " #(date '+%a, %b %d - %I:%W') #(battery -t) "
 ##set -g status-utf8 on
 #
 #set-option -g default-command "reattach-to-user-namespace -l zsh" # or bash
-#set-option -g default-shell /bin/zsh
 #set-option -g history-limit 10000
 #set -g message-fg white
 #set -g message-bg black
@@ -71,17 +91,6 @@ set-option -g status-right " #(date '+%a, %b %d - %I:%W') #(battery -t) "
 #set -g pane-border-bg black
 #set -g pane-active-border-fg white
 #set -g pane-active-border-bg yellow
-#
-#############################################################################
-## Automatically set window title
-#############################################################################
-#setw -g automatic-rename
-#
-#############################################################################
-## Titles (window number, program name, active (or not)
-#############################################################################
-#set-option -g set-titles on
-#set-option -g set-titles-string '#H:#S.#I.#P #W #T'
 #
 #bind C-c run "tmux show-buffer | reattach-to-user-namespace pbcopy"
 #bind C-v run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"

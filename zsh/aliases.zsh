@@ -63,3 +63,4 @@ alias mux="tmuxinator"
 # brew related
 ################################################################################
 alias cleanup="brew update; brew upgrade; brew cleanup"
+alias uptodate="~/code/dotfiles/scripts/up_to_date"

@@ -15,6 +15,7 @@ alias df="df -h"
 ################################################################################
 alias code="cd ~/code"
 alias gods"cd ~/code/dotfiles"
+alias god="cd ~/code/daily_drip/elixir"
 alias goe="cd ~/code/exercism/elixir"
 alias study="cd ~/code/study-notes"
 alias work="~/code/work/dotfiles/work"

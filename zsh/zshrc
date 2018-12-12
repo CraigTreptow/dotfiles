@@ -46,4 +46,5 @@ SAVEHIST=1000
 setopt autocd
 bindkey -v
 export NVM_DIR="$HOME/.nvm"
+export MBC_WORK_ROOT=~/code/work
 . "/usr/local/opt/nvm/nvm.sh"

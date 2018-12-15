@@ -16,7 +16,7 @@ alias df="df -h"
 alias code="cd ~/code"
 alias gods"cd ~/code/dotfiles"
 alias god="cd ~/code/daily_drip/elixir"
-alias goe="cd ~/code/exercism/elixir"
+alias gor="cd ~/code/elixir/rayz"
 alias study="cd ~/code/study-notes"
 alias work="~/code/work/dotfiles/work"
 alias gow="cd ~/code/work"
@@ -48,7 +48,6 @@ alias gitcleanup='git branch --merged | egrep -v "(^\*|master|develop)" | xargs 
 alias rbc='clear;git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs rubocop'
 # Before push
 alias rbp='clear;git diff-tree -r --no-commit-id --name-only master@\{u\} head | xargs ls -1 2>/dev/null | grep '\.rb$' | grep -v schema | xargs rubocop'
-
 alias rac='rubocop --auto-correct'
 
 ################################################################################

@@ -1,18 +1,17 @@
 " ==============================================================================
-" Vundle config
+" Plug config
 " ==============================================================================
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-dispatch'
+Plug 'janko-m/vim-test'
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'vim-airline/vim-airline',   { 'for': 'haskell' }
+Plug 'w0rp/ale',                  { 'for': 'haskell' }
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'tpope/vim-dispatch'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"
 " ==============================================================================
 " key mappings
 " ==============================================================================
@@ -20,6 +19,13 @@ let mapleader = "\<Space>"
 
 nmap <leader>vr :sp $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
+"
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 " ==============================================================================
 " General configurations
 " ==============================================================================
@@ -141,3 +147,6 @@ set ruler                 " Show current line and column at bottom right
 " ==============================================================================
 " Highlight the status line
 highlight StatusLine ctermfg=blue ctermbg=yellow
+
+" make test commands execute using dispatch.vim
+let test#strategy = "dispatch"

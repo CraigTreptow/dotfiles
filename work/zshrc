@@ -1,0 +1,170 @@
+#################### Oh My Zsh ####################
+#
+export ZSH="$HOME/.oh-my-zsh"
+
+# Uncomment the following line to change how often to auto-update (in days).
+zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+HIST_STAMPS="yyyy-mm-dd"
+
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+plugins=(fzf git gh)
+
+source $ZSH/oh-my-zsh.sh
+#################### Oh My Zsh ####################
+
+#################### Functions ####################
+
+# https://stackoverflow.com/a/55171807/329921
+# killport <port>
+function killport () {
+  readonly port=${1:?"The port must be specified."}
+  # Try graceful shutdown first, then force kill if needed
+  local pids=$(lsof -i tcp:"$port" | grep LISTEN | awk '{print $2}')
+  if [ -n "$pids" ]; then
+    echo "$pids" | xargs kill 2>/dev/null || echo "$pids" | xargs kill -9
+  fi
+}
+
+#################### Functions ####################
+
+#################### ENV vars  ####################
+export VISUAL=nvim
+export PAGER=less
+
+# shell history
+export HISTFILE=~/.histfile
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+export EDITOR=nvim
+export MBC_SRC=~/workspace
+# M1 location from homebrew
+#export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+#export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# Consolidate PKG_CONFIG_PATH (avoid trailing colon if unset)
+export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig:/opt/homebrew/opt/libffi/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+export optflags="-Wno-error=implicit-function-declaration"
+
+#export LDFLAGS="-L/opt/homebrew/opt/readline/lib:$LDFLAGS"
+#export CPPFLAGS="-I/opt/homebrew/opt/readline/include:$CPPFLAGS"
+#export LDFLAGS="-L/opt/homebrew/opt/libffi/lib:$LDFLAGS"
+#export CPPFLAGS="-I/opt/homebrew/opt/libffi/include:$CPPFLAGS"
+
+# export LDFLAGS="-L/opt/homebrew/opt/icu4c/lib:/opt/homebrew/opt/libpq/lib:/opt/homebrew/Cellar/postgresql@13/13.4/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/icu4c/include:/opt/homebrew/opt/libpq/include:/opt/homebrew/Cellar/postgresql@13/13.4/include"
+
+# export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+# export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/opt/openssl@1.1/lib/"
+#
+# Consolidate PATH modifications
+export PATH="$HOME/.local/bin:/opt/homebrew/opt/icu4c/bin:/opt/homebrew/opt/icu4c/sbin:/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@16/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@16/include"
+# export JAVA_HOME=~/.asdf/installs/java/zulu-21.38.21
+export DISABLE_SPRING=true
+export RUBY_YJIT_ENABLE=1
+export WEB_CONCURRENCY=0
+export HOMEBREW_NO_AUTO_UPDATE=1
+# work around for: objc[26619]: +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called. in MBC
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+export DOCKER_DEFAULT_PLATFORM=linux/arm64
+export JRUBY_OPTS="--dev -J-Xms2g -J-Xmx6g -J-XX:+UseG1GC"
+export PATH="$HOME/workspace/mbc_tools:$PATH"
+
+# Secrets (API keys, tokens) — kept out of version control
+source ~/.zshrc.secrets
+
+#################### ENV vars  ####################
+
+####################  Aliases  ####################
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+####################  Aliases  ####################
+alias vim=nvim
+alias ccusage="~/.bun/bin/ccusage"
+alias cat="bat"
+alias grep="rg"
+alias be="bundle exec"
+
+# Overmind process groups
+# Usage: om-web, om-jobs, om-karafka, om-listeners, om-all, om-core
+# Connect: omc-web <process>, omc-jobs <process>, etc.
+# Stop: omq-web, omq-jobs, omq-all, or omq (stops all groups)
+om-web()       { cd ~/workspace/mbc && OVERMIND_ENV=~/workspace/.overmind-web.env       overmind s -D -s ~/workspace/.overmind-web.sock; }
+om-jobs()      { cd ~/workspace/mbc && OVERMIND_ENV=~/workspace/.overmind-jobs.env      overmind s -D -s ~/workspace/.overmind-jobs.sock; }
+om-karafka()   { cd ~/workspace/mbc && OVERMIND_ENV=~/workspace/.overmind-karafka.env   overmind s -D -s ~/workspace/.overmind-karafka.sock; }
+om-listeners() { cd ~/workspace/mbc && OVERMIND_ENV=~/workspace/.overmind-listeners.env overmind s -D -s ~/workspace/.overmind-listeners.sock; }
+om-core()      { cd ~/workspace/mbc && OVERMIND_ENV=~/workspace/.overmind-core.env      overmind s -D -s ~/workspace/.overmind-core.sock; }
+om-all()       { cd ~/workspace/mbc && OVERMIND_ENV=~/workspace/.overmind-all.env       overmind s -D -s ~/workspace/.overmind-all.sock; }
+
+# Overmind connect helpers
+omc-web() { overmind c -s ~/workspace/.overmind-web.sock "$1"; }
+omc-jobs() { overmind c -s ~/workspace/.overmind-jobs.sock "$1"; }
+omc-karafka() { overmind c -s ~/workspace/.overmind-karafka.sock "$1"; }
+omc-listeners() { overmind c -s ~/workspace/.overmind-listeners.sock "$1"; }
+omc-core() { overmind c -s ~/workspace/.overmind-core.sock "$1"; }
+omc-all() { overmind c -s ~/workspace/.overmind-all.sock "$1"; }
+
+# Overmind quit helpers
+omq-web() { overmind q -s ~/workspace/.overmind-web.sock; }
+omq-jobs() { overmind q -s ~/workspace/.overmind-jobs.sock; }
+omq-karafka() { overmind q -s ~/workspace/.overmind-karafka.sock; }
+omq-listeners() { overmind q -s ~/workspace/.overmind-listeners.sock; }
+omq-core() { overmind q -s ~/workspace/.overmind-core.sock; }
+omq-all() { overmind q -s ~/workspace/.overmind-all.sock; }
+omq() { for s in ~/workspace/.overmind-*.sock; do [ -e "$s" ] && overmind q -s "$s"; done; }
+
+####################  Setups   ####################
+ulimit -n 10240
+
+# Added by Windsurf - Only start ssh-agent if not already running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" > /dev/null 2>&1
+  ssh-add ~/.ssh/github_com > /dev/null 2>&1
+fi
+
+export PATH="$HOME/.local/bin:$PATH"
+eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
+

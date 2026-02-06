@@ -1,0 +1,39 @@
+<type>: <summary>
+
+__Problem__
+
+* Why was this change necessary?
+* How does it address the problem?
+* Are there any side effects?
+
+__Solution__
+
+What does this do?
+What options did you consider?
+
+__References__
+
+Links to documentation, help desk tickets, project tickets, etc.
+
+
+# ─────────────────────────────────────────────────────────────────────────────────────────────────┤
+
+# cycle - all features and bugs of cycle work
+# fix - any bugs not related to current cycle
+# feat - any feature not related to current cycle
+# debt - all tech debt and dev ops not related to current cycle
+# tidy - all tidys that our friend Kent Beck talks about Tidy First
+
+# <type>: <short summary>
+#   │            │
+#   │            └─⫸ Summary in present tense. Not capitalized. No period at the end.
+#   │
+#   └─⫸ Commit Type: fix|feat|chore|ci|docs|perf|refactor|test
+
+# BREAKING CHANGE: <description>
+
+# Add co-authors if you worked on this code with others:
+#
+# Co-authored-by: Full Name <email@example.com>
+# Co-authored-by: Full Name <email@example.com>
+

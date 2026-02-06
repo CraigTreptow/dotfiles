@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Git pre-commit hook to prevent committing *.key files without confirmation
+# This hook will ask for confirmation before allowing *.key files to be committed
+
+# Get list of .key files that are being committed
+KEY_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.key$')
+
+if [ ! -z "$KEY_FILES" ]; then
+    echo "⚠️  WARNING: You are about to commit the following .key file(s):"
+    echo ""
+    echo "$KEY_FILES" | while read -r file; do
+        echo "  • $file"
+    done
+    echo ""
+    echo "Key files often contain sensitive information and should not be committed to version control."
+    echo ""
+
+    # Check if we're in a non-interactive environment (CI/CD)
+    if [ -z "$PS1" ] && [ -z "$PROMPT" ]; then
+        echo "Non-interactive environment detected. Blocking commit with .key files."
+        exit 1
+    fi
+
+    # Prompt for confirmation
+    exec < /dev/tty
+    read -p "Are you SURE you want to commit these .key file(s)? (yes/no): " response
+    exec <&-
+
+    case "$response" in
+        yes|YES)
+            echo "Proceeding with commit including .key file(s)..."
+            exit 0
+            ;;
+        *)
+            echo "Commit aborted. Remove .key files from staging or add them to .gitignore."
+            echo ""
+            echo "To remove .key files from staging:"
+            echo "  git reset HEAD *.key"
+            echo ""
+            echo "To add .key files to .gitignore:"
+            echo "  echo '*.key' >> .gitignore"
+            exit 1
+            ;;
+    esac
+fi
+
+exit 0

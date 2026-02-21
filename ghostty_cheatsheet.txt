@@ -1,0 +1,98 @@
+# Ghostty Keyboard Shortcuts Cheatsheet
+
+## Tab Navigation
+| Shortcut                    | Action              |
+|-----------------------------|---------------------|
+| Ctrl+Shift+T                | New tab             |
+| Ctrl+Shift+W                | Close current tab   |
+| Ctrl+Tab                    | Next tab            |
+| Ctrl+Shift+Tab              | Previous tab        |
+| Ctrl+Shift+Arrow Right      | Next tab            |
+| Ctrl+Shift+Arrow Left       | Previous tab        |
+| Ctrl+Page Down              | Next tab            |
+| Ctrl+Page Up                | Previous tab        |
+| Alt+1 / Alt+Digit 1         | Go to tab 1         |
+| Alt+2 / Alt+Digit 2         | Go to tab 2         |
+| Alt+3 / Alt+Digit 3         | Go to tab 3         |
+| Alt+4 / Alt+Digit 4         | Go to tab 4         |
+| Alt+5 / Alt+Digit 5         | Go to tab 5         |
+| Alt+6 / Alt+Digit 6         | Go to tab 6         |
+| Alt+7 / Alt+Digit 7         | Go to tab 7         |
+| Alt+8 / Alt+Digit 8         | Go to tab 8         |
+| Alt+9                       | Last tab            |
+
+## Split Management
+| Shortcut                         | Action                  |
+|----------------------------------|-------------------------|
+| Ctrl+Shift+O                     | New split (right)       |
+| Ctrl+Shift+E                     | New split (down)        |
+| Ctrl+Shift+Enter                 | Toggle split zoom       |
+| Ctrl+Alt+Arrow Left              | Go to split (left)      |
+| Ctrl+Alt+Arrow Right             | Go to split (right)     |
+| Ctrl+Alt+Arrow Up                | Go to split (up)        |
+| Ctrl+Alt+Arrow Down              | Go to split (down)      |
+| Super+Ctrl+]                     | Go to next split        |
+| Super+Ctrl+[                     | Go to previous split    |
+| Super+Ctrl+Shift+Arrow Left      | Resize split left 10    |
+| Super+Ctrl+Shift+Arrow Right     | Resize split right 10   |
+| Super+Ctrl+Shift+Arrow Up        | Resize split up 10      |
+| Super+Ctrl+Shift+Arrow Down      | Resize split down 10    |
+
+## Clipboard Operations
+| Shortcut              | Action                    |
+|-----------------------|---------------------------|
+| Ctrl+Shift+C          | Copy to clipboard         |
+| Ctrl+Shift+V          | Paste from clipboard      |
+| Ctrl+Insert           | Copy to clipboard         |
+| Shift+Insert          | Paste from selection      |
+| copy                  | Copy to clipboard         |
+| paste                 | Paste from clipboard      |
+
+## Selection
+| Shortcut              | Action                    |
+|-----------------------|---------------------------|
+| Ctrl+Shift+A          | Select all                |
+| Shift+Arrow Left      | Adjust selection left     |
+| Shift+Arrow Right     | Adjust selection right    |
+| Shift+Arrow Up        | Adjust selection up       |
+| Shift+Arrow Down      | Adjust selection down     |
+
+## Scrolling
+| Shortcut              | Action                    |
+|-----------------------|---------------------------|
+| Shift+Page Up         | Scroll page up            |
+| Shift+Page Down       | Scroll page down          |
+| Shift+Home            | Scroll to top             |
+| Shift+End             | Scroll to bottom          |
+| Ctrl+Shift+Page Up    | Jump to previous prompt   |
+| Ctrl+Shift+Page Down  | Jump to next prompt       |
+
+## Font Size
+| Shortcut              | Action                    |
+|-----------------------|---------------------------|
+| Ctrl+= / Ctrl++       | Increase font size        |
+| Ctrl+-                | Decrease font size        |
+| Ctrl+0                | Reset font size           |
+
+## Window Management
+| Shortcut              | Action                    |
+|-----------------------|---------------------------|
+| Ctrl+Shift+N          | New window                |
+| Ctrl+Enter            | Toggle fullscreen         |
+| Alt+F4                | Close window              |
+| Ctrl+Shift+Q          | Quit                      |
+
+## Configuration & Tools
+| Shortcut                  | Action                        |
+|---------------------------|-------------------------------|
+| Ctrl+,                    | Open config                   |
+| Ctrl+Shift+,              | Reload config                 |
+| Ctrl+Shift+I              | Toggle inspector              |
+| Ctrl+Shift+P              | Toggle command palette        |
+
+## Screen File Operations
+| Shortcut                  | Action                        |
+|---------------------------|-------------------------------|
+| Ctrl+Shift+J              | Write screen file (paste)     |
+| Ctrl+Alt+Shift+J          | Write screen file (open)      |
+| Super+Ctrl+Shift+J        | Write screen file (copy)      |

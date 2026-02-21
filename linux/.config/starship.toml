@@ -1,0 +1,11 @@
+[directory]
+fish_style_pwd_dir_length = 1
+truncate_to_repo = true
+style = "bold cyan"
+repo_root_style = "bold green"
+
+[cmd_duration]
+min_time = 500  # show if command takes more than 500ms
+show_milliseconds = false
+format = "took [$duration]($style)"
+style = "bold yellow"

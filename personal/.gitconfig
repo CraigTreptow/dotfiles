@@ -4,6 +4,9 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gitlab.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/glab auth git-credential
 [user]
 	name = Craig Treptow
 	email = craig.treptow@gmail.com

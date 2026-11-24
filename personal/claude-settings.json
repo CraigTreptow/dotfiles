@@ -43,5 +43,19 @@
     }
   },
   "tui": "fullscreen",
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/dotfiles/personal/claude-hooks/ruby-quality-stop.sh",
+            "timeout": 120,
+            "statusMessage": "Checking Ruby quality..."
+          }
+        ]
+      }
+    ]
+  }
 }

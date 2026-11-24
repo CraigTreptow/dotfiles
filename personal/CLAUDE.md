@@ -36,7 +36,7 @@ Follow the Ruby & Rails OOP guidelines defined in the shared style guide located
 ## 💎 Ruby & Rails Guidelines
 - **Stay Conventional:** Follow "The Rails Way." Use Scaffolding and standard MVC patterns.
 - **ActiveRecord:** Always check `db/schema.rb` before suggesting migrations or queries. Fix N+1 issues using `.includes`.
-- **Slim Controllers:** Keep logic in Models or Service Objects; use `app/services` for complex business logic.
+- **Slim Controllers:** Keep logic out of controllers, in small single-purpose objects (models, POROs, services) namespaced by business domain (e.g. `app/services/billing/`) and respecting the Metz limits in the style guide.
 - **Syntax:** Use modern Ruby (3.x+) syntax: required keyword arguments, pattern matching, and shorthand hash syntax `{ name: }`.
 - **Background Jobs:** Prefer `Solid Queue` for Rails 8+ projects.
 
@@ -50,4 +50,5 @@ Follow the Ruby & Rails OOP guidelines defined in the shared style guide located
 - **Be Succinct:** Omit conversational filler. Just show the code or the fix.
 - **Error Handling:** Always include basic error handling and validation in Models.
 - **Verification:** Run `bundle exec rspec` or `bin/rails test` to verify changes before finalizing.
+- **Quality Gate:** A Stop hook runs standardrb and the Metz RuboCop limits on changed Ruby files; fix every violation it reports.
 

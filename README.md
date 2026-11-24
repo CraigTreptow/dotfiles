@@ -30,3 +30,21 @@ The `~/.claude/settings.json` entry that wires it up:
   "command": "bash ~/.claude/statusline-command.sh"
 }
 ```
+
+## Claude Code Coding Standards (personal)
+
+- `personal/CLAUDE.md` — global instructions; points at the style guide below.
+- `personal/RUBY_RAILS_STYLE.md` — Sandi Metz's rules, the rule-break protocol, "Magic Tricks
+  of Testing", and POODR / 99 Bottles design principles.
+- `personal/metz-rubocop.yml` — RuboCop config for Metz rules 1–3 (class ≤100 lines,
+  method ≤5 lines, ≤4 parameters).
+- `personal/claude-hooks/ruby-quality-stop.sh` — Stop hook (registered in
+  `claude-settings.json`): runs `standardrb` and the Metz config on changed Ruby files and
+  blocks Claude from finishing until they pass. Skips repos that don't bundle `standard`.
+  Tests: `bash personal/claude-hooks/test/ruby-quality-stop_test.sh`.
+
+```bash
+ln -sf ~/dotfiles/personal/CLAUDE.md ~/.claude/CLAUDE.md
+ln -sf ~/dotfiles/personal/RUBY_RAILS_STYLE.md ~/.claude/RUBY_RAILS_STYLE.md
+ln -sf ~/dotfiles/personal/metz-rubocop.yml ~/.claude/metz-rubocop.yml
+```

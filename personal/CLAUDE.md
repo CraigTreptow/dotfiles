@@ -26,7 +26,7 @@ Before implementing with any SDK, framework, or external API:
 ## 🛠 Tech Stack Preferences
 - **Backend:** Ruby on Rails (latest stable), PostgreSQL, Redis.
 - **Frontend:** Hotwire (Turbo/Stimulus), Bootstrap CSS, vanilla JS/ES6.
-- **Testing:** RSpec, Capybara, FactoryBot (prefer TDD).
+- **Testing:** Minitest, Capybara, Rails fixtures (prefer TDD).
 - **Standards:** StandardRB.
 
 ## Style Guide
@@ -49,6 +49,6 @@ Follow the Ruby & Rails OOP guidelines defined in the shared style guide located
 - **Plan First:** Before coding, provide a brief bulleted plan of changes.
 - **Be Succinct:** Omit conversational filler. Just show the code or the fix.
 - **Error Handling:** Always include basic error handling and validation in Models.
-- **Verification:** Run `bundle exec rspec` or `bin/rails test` to verify changes before finalizing.
+- **Verification:** Run `bin/rails test` (and `bin/rails test:system` when UI changes) to verify changes before finalizing.
 - **Quality Gate:** A Stop hook runs standardrb and the Metz RuboCop limits on changed Ruby files; fix every violation it reports.
 
